@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: grow3485-syncfalse-web
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m http.server $PORT
+    envVars:
+      - key: API_SECRET
+        sync: false
+      - key: PLAIN
+        value: x
+  - type: web
+    name: grow3485-syncfalse-web2
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m http.server $PORT
+    envVars:
+      - key: WORKER_TOKEN
+        sync: false
