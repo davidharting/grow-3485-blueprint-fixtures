@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: grow3485-static-site
+    runtime: static
+    buildCommand: echo build
+    staticPublishPath: .
+    envVars:
+      - key: SITE_SECRET
+        sync: false
