@@ -1,7 +1,7 @@
 services:
   - type: web
     name: grow3485-invalid-web
-    runtime: cobol
-    plan: gigantic
+    runtime: python
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: python -m http.server $PORT
