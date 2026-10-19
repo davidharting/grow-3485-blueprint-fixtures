@@ -11,9 +11,8 @@ services:
         sync: false
       - key: EMPTY_VALUE
         sync: false
-      - key: DEFAULTED_TOKEN
+      - key: EXPLICIT_TOKEN
         sync: false
-        value: grow3493-yaml-default-synthetic
       - key: PLAIN
         value: unchanged
   - type: web
