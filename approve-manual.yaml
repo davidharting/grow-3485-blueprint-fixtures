@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: grow3493-manual-one
+    runtime: python
+    plan: free
+    autoDeploy: false
+    buildCommand: 'true'
+    startCommand: python -m http.server $PORT --bind 0.0.0.0
+    envVars:
+      - key: SHARED_TOKEN
+        sync: false
+      - key: EMPTY_VALUE
+        sync: false
+      - key: DEFAULTED_TOKEN
+        sync: false
+        value: grow3493-yaml-default-synthetic
+      - key: PLAIN
+        value: unchanged
+  - type: web
+    name: grow3493-manual-two
+    runtime: python
+    plan: free
+    autoDeploy: false
+    buildCommand: 'true'
+    startCommand: python -m http.server $PORT --bind 0.0.0.0
+    envVars:
+      - key: SHARED_TOKEN
+        sync: false
