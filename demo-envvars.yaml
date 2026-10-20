@@ -1,0 +1,23 @@
+projects:
+  - name: demo-envvars
+    environments:
+      - name: production
+        databases:
+          - name: demo-db
+            plan: basic-256mb
+
+        services:
+          - type: web
+            name: demo-web
+            runtime: python
+            plan: starter
+            startCommand: python -m http.server $PORT --bind 0.0.0.0
+            envVars:
+              - key: GREETING
+                value: hello
+              - key: DATABASE_URL
+                fromDatabase:
+                  name: demo-db
+                  property: connectionString
+              - key: SECRET_KEY
+                generateValue: true
