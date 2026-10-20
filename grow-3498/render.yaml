@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: grow3498-endpoint-demo
+    runtime: python
+    plan: starter
+    branch: main
+    rootDir: grow-3498
+    autoDeployTrigger: "off"
+    buildCommand: python -m py_compile server.py
+    startCommand: python server.py
+    healthCheckPath: /
+    envVars:
+      - key: MANUAL_SECRET
+        sync: false
+      - key: GENERATED_SECRET
+        generateValue: true
+      - key: DEPLOYMENT_VERSION
+        value: version-a
