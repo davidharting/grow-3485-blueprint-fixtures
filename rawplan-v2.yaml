@@ -1,0 +1,45 @@
+databases:
+  - name: grow3490-db
+    plan: basic-256mb
+
+envVarGroups:
+  - name: grow3490-shared
+    envVars:
+      - key: GROUP_SECRET
+        generateValue: true
+
+services:
+  - type: web
+    name: grow3490-source
+    runtime: python
+    plan: free
+    autoDeployTrigger: "off"
+    buildCommand: "true"
+    startCommand: python -m http.server $PORT --bind 0.0.0.0
+    envVars:
+      - key: GENERATED_SECRET
+        generateValue: true
+      - key: NEW_GENERATED_SECRET
+        generateValue: true
+      - key: MANUAL_SECRET
+        sync: false
+      - key: OBSERVABLE_CHANGE
+        value: version-two
+  - type: web
+    name: grow3490-consumer
+    runtime: python
+    plan: free
+    autoDeployTrigger: "off"
+    buildCommand: "true"
+    startCommand: python -m http.server $PORT --bind 0.0.0.0
+    envVars:
+      - fromGroup: grow3490-shared
+      - key: COPIED_SECRET
+        fromService:
+          type: web
+          name: grow3490-source
+          envVarKey: GENERATED_SECRET
+      - key: DATABASE_URL
+        fromDatabase:
+          name: grow3490-db
+          property: connectionString
