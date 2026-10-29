@@ -2,7 +2,7 @@ services:
   - type: web
     name: grow3493-plain
     runtime: python
-    plan: free
+    plan: starter
     autoDeploy: false
     buildCommand: 'true'
     startCommand: python -m http.server $PORT --bind 0.0.0.0
