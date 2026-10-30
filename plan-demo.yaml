@@ -7,5 +7,7 @@ services:
     buildCommand: 'true'
     startCommand: python -m http.server $PORT --bind 0.0.0.0
     envVars:
+      - key: API_SECRET
+        sync: false
       - key: PLAIN
         value: x
