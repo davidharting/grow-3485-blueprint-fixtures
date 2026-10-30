@@ -13,6 +13,8 @@ services:
         sync: false
       - key: EXPLICIT_TOKEN
         sync: false
+      - key: NEW_TOKEN
+        sync: false
       - key: PLAIN
         value: unchanged
   - type: web
